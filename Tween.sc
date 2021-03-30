@@ -22,7 +22,7 @@ struct Tween
             start = (va-option start ...)
             end = (va-option end ...)
             duration = (va-option duration ...)
-            ease = (va-option ease ...)
+            ease = (va-option ease ... ease.linear)
             time = 0
 
 do
