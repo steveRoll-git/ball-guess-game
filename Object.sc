@@ -50,6 +50,7 @@ struct Object
                 ;
 
             if (tween.time >= tween.duration)
+                tween.on-finish;
                 'fast-remove self.tweens i
 
     fn draw (self)
