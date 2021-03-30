@@ -1,6 +1,7 @@
 using import glm
 using import struct
 using import Array
+using import Rc
 
 import .bottle
 from bottle.graphics let Sprite
@@ -20,7 +21,7 @@ typedef+ Array
 
 struct Object
     position    : vec2
-    sprite      : Sprite
+    sprite      : (Rc Sprite)
     quad        : vec4
     tweens      : (Array Tween)
 
@@ -28,7 +29,7 @@ struct Object
     case (cls)
         super-type.__typecall cls
             sprite = (Sprite)
-    case (cls, sprite : Sprite)
+    case (cls, sprite : (Rc Sprite))
         super-type.__typecall cls
             sprite = sprite
             quad = (vec4 0 0 1 1)
