@@ -12,4 +12,9 @@ do
     fn quad-out (t)
         t * (2 - t)
 
+    fn quad-in-out (t)
+        ? (t < 0.5)
+            2 * t * t
+            -1 + (4 - 2 * t) * t
+
     locals;
