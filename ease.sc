@@ -17,4 +17,8 @@ do
             2 * t * t
             -1 + (4 - 2 * t) * t
 
+    fn quad-boomerang (t)
+        let 2t = (t * 2)
+        2t * (2 - 2t)
+
     locals;
