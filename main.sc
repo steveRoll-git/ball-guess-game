@@ -19,9 +19,27 @@ fn (dt)
             Tween
                 property = TweenProperty.posX
                 start = 0
-                end = 300
-                duration = 1
+                end = 200
+                duration = 0.75
                 ease = ease.linear
+        'append testObj.tweens
+            Tween
+                property = TweenProperty.posY
+                start = 0
+                end = 75
+                duration = (0.75 / 2)
+                ease = ease.quad-out
+                on-finish =
+                    fn ()
+                        'append testObj.tweens
+                            Tween
+                                property = TweenProperty.posY
+                                start = 75
+                                end = 0
+                                duration = (0.75 / 2)
+                                ease = ease.quad-in
+                        ;
+                        
     'update testObj dt
 
 @@ 'on bottle.draw
