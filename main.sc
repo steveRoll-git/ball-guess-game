@@ -2,6 +2,9 @@ using import glm
 import .bottle
 import .Object
 from bottle.graphics let Sprite
+import .Tween
+from Tween let Tween TweenProperty
+import .ease
 
 global testObj : Object
 
@@ -11,7 +14,15 @@ fn ()
 
 @@ 'on bottle.update
 fn (dt)
-    testObj.position.x += 1
+    if (bottle.input.pressed? 'A)
+        'append testObj.tweens
+            Tween
+                property = TweenProperty.posX
+                start = 0
+                end = 300
+                duration = 1
+                ease = ease.linear
+    'update testObj dt
 
 @@ 'on bottle.draw
 fn ()
