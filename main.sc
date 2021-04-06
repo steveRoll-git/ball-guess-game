@@ -51,8 +51,9 @@ fn animate-cup (from-index to-index y duration)
 fn swap-cups (a b)
     imply a i32
     imply b i32
-    let diff = (f32 ((abs (a - b)) - 1))
-    duration := move-anim-duration + diff * 0.05
+    let diff = (f32 (abs (a - b)))
+    let t = 0.2
+    duration := move-anim-duration * (diff * t - t + 1)
     y-diff := move-anim-y
     animate-cup a b (cup-y - y-diff) duration
     animate-cup b a (cup-y + y-diff) duration
