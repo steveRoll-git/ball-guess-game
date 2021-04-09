@@ -24,6 +24,10 @@ global cup-margin : f32
 global cup-width : f32
 global total-width : f32
 
+global ball-sprite : Sprite
+global ball-index : i32 = 1
+global ball-visible : bool = true
+
 let move-anim-duration = 0.40
 let move-anim-y = 50.0
 
@@ -72,6 +76,12 @@ fn swap-cups (a b)
                 i += 1
         cups-draw @ d = (copy (cups-index @ i))
         i += 1
+
+    if (ball-index == a)
+        ball-index = b
+    elseif (ball-index == b)
+        ball-index = a
+
     'swap cups-index a b
 
 @@ 'on bottle.load
@@ -93,6 +103,8 @@ fn ()
         'append cups-index (copy new-cup)
         'append cups-draw (copy new-cup)
 
+    ball-sprite = (Sprite "images/ball.png")
+
 @@ 'on bottle.update
 fn (dt)
     if (bottle.input.pressed? 'A)
@@ -104,6 +116,12 @@ fn (dt)
 
 @@ 'on bottle.draw
 fn ()
+    if ball-visible
+        bottle.graphics.sprite ball-sprite
+            vec2
+                (get-cup-x ball-index) + cup-width / 2 - (f32 ball-sprite.size.x) / 2
+                cup-y + 10
+
     for cup in cups-draw
         'draw cup
 
